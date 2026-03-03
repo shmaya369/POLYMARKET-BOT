@@ -55,6 +55,17 @@ JSON output:
 python -m polymarket_bot.cli --demo --json
 ```
 
+
+## Web UI
+
+A lightweight Streamlit interface is available for interactive analysis.
+
+```bash
+streamlit run src/polymarket_bot/web_app.py
+```
+
+In the app you can paste market slugs (one per line), choose `limit` and `min_edge`, toggle demo mode (`מצב דמו`), and click `נתח שווקים` to view a styled results table.
+
 ## CLI Options
 
 - `--limit`: number of active markets to fetch (default: `50`)
