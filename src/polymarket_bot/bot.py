@@ -17,8 +17,14 @@ class PolymarketAnalysisBot:
         self.analyzer = MarketAnalyzer(self.config)
 
     def run(self, demo: bool = False, limit: int | None = None, top_n: int | None = None) -> list[AnalysisResult]:
-        markets = self._demo_markets() if demo else self._fetch_markets_with_fallback(limit)
+        markets = self.get_markets(demo=demo, limit=limit)
         return self.analyzer.analyze(markets, top_n=top_n)
+
+    def get_markets(self, demo: bool = False, limit: int | None = None) -> list[Market]:
+        return self._demo_markets() if demo else self._fetch_markets_with_fallback(limit)
+
+    def get_demo_markets(self) -> list[Market]:
+        return self._demo_markets()
 
     def _fetch_markets_with_fallback(self, limit: int | None) -> list[Market]:
         try:
